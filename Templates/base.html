@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Sistema{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <span class="nome-empresa">Fernando água e gás</span>
+
+        <ul class="navbar-links">
+           <li><a href="{% url 'tela_inicial' %}">Início</a></li>
+            <li><a href="#">Produtos</a></li>
+            <li><a href="#">Meus Pedidos</a></li>
+            <li><a href="#">Contato</a></li>
+        </ul>
+
+        <div class="navbar-right">
+            <button class="btn-entrar">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.9-2.2 4.9-4.9S14.7 2.2 12 2.2 7.1 4.4 7.1 7.1 9.3 12 12 12zm0 2.4c-3.3 0-9.8 1.6-9.8 4.9v2.5h19.6v-2.5c0-3.3-6.5-4.9-9.8-4.9z"/></svg>
+                Entrar
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>FAZER RODAPÉ</footer>
+
+</body>
+</html>

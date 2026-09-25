@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Página inicial{% endblock %}
+
+{% block content %}
+<section class="cad">
+    <div class="formCad">
+        <div class="logo-login">💧🔥</div>
+        <h1>Faça o seu cadastro!</h1>
+        <form>
+            <label for="cadNome">Nome</label>
+            <input type="text" name="cadNome" id="cadNome" placeholder="seu nome">
+            <label for="cadEmail">Email</label>
+            <input type="email" name="cadEmail" id="cadEmail" placeholder="seu email">
+            <label for="cadTel">Contato</label>
+            <input type="tel" name="cadTel" id="cadTel" placeholder="seu contato">
+            <label for="cadSenha">Senha</label>
+            <input type="password" name="cadSenha" id="cadSenha" placeholder="crie uma senha">
+            <input type="submit" name="cadEnviar" class="cadEnviar" id="cadEnviar">
+
+        </form>
+    </div>
+</section>
+{% endblock %}

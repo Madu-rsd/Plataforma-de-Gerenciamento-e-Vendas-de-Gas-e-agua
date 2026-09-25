@@ -417,7 +417,7 @@ body {
     background: var(--cinza-bg);
     color: var(--azul);
     cursor: pointer;
-    transition: background .15s ease, color .15s ease;
+    transition: .15s ease, color .15s ease;
   }
   .pedido .categoria-btn[aria-pressed="true"] {
     background: var(--azul);

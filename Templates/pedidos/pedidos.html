@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}Pedidos{% endblock %}
+
+{% block content %}
+<main class="pedido">
+
+    <!-- Abas superiores (Gás / Água / Promoções) -->
+    <nav class="tabs" aria-label="Categorias do pedido">
+      <button type="button" class="tab" data-categoria="gas">Gás</button>
+      <button type="button" class="tab" data-categoria="agua">Água</button>
+      <button type="button" class="tab" data-categoria="promocoes">Promoções</button>
+    </nav>
+  
+    <h1 class="titulo">Realizar Pedido</h1>
+  
+    <!-- 1. FORMULÁRIO -->
+    <form id="form-pedido" class="cartao" novalidate>
+      <h2 class="subtitulo">Dados do Cliente</h2>
+  
+      <div class="campo">
+        <span class="campo-icone" aria-hidden="true">👤</span>
+        <input type="text" id="nome" name="nome" placeholder="Nome completo" autocomplete="name" required>
+      </div>
+  
+      <div class="campo">
+        <span class="campo-icone" aria-hidden="true">📍</span>
+        <input type="text" id="endereco" name="endereco" placeholder="Endereço" autocomplete="street-address" required>
+      </div>
+  
+      <div class="campo">
+        <span class="campo-icone" aria-hidden="true">📞</span>
+        <input type="tel" id="telefone" name="telefone" placeholder="Telefone" autocomplete="tel" required>
+      </div>
+    </form>
+  
+    <!-- 2. ITENS DO PEDIDO -->
+    <section class="cartao">
+      <h2 class="subtitulo">Itens do Pedido</h2>
+  
+      <div class="tabela-wrap">
+        <table class="tabela-itens">
+          <thead>
+            <tr>
+              <th>Produto</th>
+              <th>Qtd.</th>
+              <th>Valor Unit.</th>
+              <th>Subtotal</th>
+              <th class="col-acao"><span class="sr-only">Remover</span></th>
+            </tr>
+          </thead>
+          <tbody id="corpo-itens">
+            <!-- linhas inseridas via JS -->
+          </tbody>
+        </table>
+      </div>
+  
+      <p id="estado-vazio" class="estado-vazio">
+        Nenhum item adicionado.<br>
+        Adicione água ou gás para iniciar seu pedido.
+      </p>
+  
+      <div id="total-pedido" class="total-pedido" hidden>
+        <span>Total</span>
+        <strong id="valor-total">R$ 0,00</strong>
+      </div>
+    </section>
+  
+    <!-- 3. CATEGORIAS (filtro de produtos) -->
+    <section class="cartao">
+      <h2 class="subtitulo">Categorias</h2>
+  
+      <div class="categorias" role="tablist" aria-label="Filtrar produtos por categoria">
+        <button type="button" class="categoria-btn" data-categoria="gas">Gás</button>
+        <button type="button" class="categoria-btn" data-categoria="agua">Água</button>
+        <button type="button" class="categoria-btn" data-categoria="promocoes">Promoções</button>
+      </div>
+  
+      <div id="lista-produtos" class="lista-produtos">
+        <!-- produtos inseridos via JS, filtrados pela categoria ativa -->
+      </div>
+    </section>
+  
+  </main>
+{% endblock %}

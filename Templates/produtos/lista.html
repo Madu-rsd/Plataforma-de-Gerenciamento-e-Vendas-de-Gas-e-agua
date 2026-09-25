@@ -1,8 +1,104 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Produtos{% endblock %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/produtos.css' %}">
+{% endblock %}
+
 {% block content %}
+<section class="produtos-header">
     <h1>Nossos Produtos</h1>
-    <p>Aqui vai a listagem de botijões, água, etc.</p>
+    <p>Escolha os botijões de gás e garrafões de água e monte seu pedido.</p>
+</section>
+
+<section class="produtos-container">
+
+    <div class="produtos-grid" id="grid-produtos">
+
+        <article class="produto-card" data-id="gas-p13" data-nome="Botijão de Gás P13" data-preco="120.00">
+            <div class="produto-imagem">🔥</div>
+            <h3>Botijão de Gás P13</h3>
+            <p class="produto-descricao">Ideal para uso doméstico (13 kg).</p>
+            <p class="produto-preco">R$ 120,00</p>
+
+            <div class="produto-quantidade">
+                <button type="button" class="btn-qtd" data-acao="diminuir">−</button>
+                <span class="qtd-valor">0</span>
+                <button type="button" class="btn-qtd" data-acao="aumentar">+</button>
+            </div>
+
+            <button type="button" class="btn-adicionar">Adicionar ao pedido</button>
+        </article>
+
+        <article class="produto-card" data-id="gas-p45" data-nome="Botijão de Gás P45" data-preco="320.00">
+            <div class="produto-imagem">🔥</div>
+            <h3>Botijão de Gás P45</h3>
+            <p class="produto-descricao">Indicado para comércios (45 kg).</p>
+            <p class="produto-preco">R$ 320,00</p>
+
+            <div class="produto-quantidade">
+                <button type="button" class="btn-qtd" data-acao="diminuir">−</button>
+                <span class="qtd-valor">0</span>
+                <button type="button" class="btn-qtd" data-acao="aumentar">+</button>
+            </div>
+
+            <button type="button" class="btn-adicionar">Adicionar ao pedido</button>
+        </article>
+
+        <article class="produto-card" data-id="agua-20l" data-nome="Garrafão de Água 20L" data-preco="15.00">
+            <div class="produto-imagem">💧</div>
+            <h3>Garrafão de Água 20L</h3>
+            <p class="produto-descricao">Água mineral, retornável.</p>
+            <p class="produto-preco">R$ 15,00</p>
+
+            <div class="produto-quantidade">
+                <button type="button" class="btn-qtd" data-acao="diminuir">−</button>
+                <span class="qtd-valor">0</span>
+                <button type="button" class="btn-qtd" data-acao="aumentar">+</button>
+            </div>
+
+            <button type="button" class="btn-adicionar">Adicionar ao pedido</button>
+        </article>
+
+        <article class="produto-card" data-id="agua-10l" data-nome="Garrafão de Água 10L" data-preco="10.00">
+            <div class="produto-imagem">💧</div>
+            <h3>Garrafão de Água 10L</h3>
+            <p class="produto-descricao">Água mineral, retornável.</p>
+            <p class="produto-preco">R$ 10,00</p>
+
+            <div class="produto-quantidade">
+                <button type="button" class="btn-qtd" data-acao="diminuir">−</button>
+                <span class="qtd-valor">0</span>
+                <button type="button" class="btn-qtd" data-acao="aumentar">+</button>
+            </div>
+
+            <button type="button" class="btn-adicionar">Adicionar ao pedido</button>
+        </article>
+
+    </div>
+
+    <aside class="resumo-pedido" id="resumo-pedido">
+        <h2>Resumo do pedido</h2>
+
+        <ul class="resumo-itens" id="resumo-itens">
+            <li class="resumo-vazio">Nenhum produto adicionado ainda.</li>
+        </ul>
+
+        <div class="resumo-total">
+            <span>Total</span>
+            <span id="resumo-total-valor">R$ 0,00</span>
+        </div>
+
+        <button type="button" class="btn-finalizar" id="btn-finalizar" disabled>
+            Continuar pedido
+        </button>
+    </aside>
+
+</section>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/produtos.js' %}"></script>
 {% endblock %}

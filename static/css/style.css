@@ -1,3 +1,4 @@
+
 /* ==========================================================================
    Variáveis
    ========================================================================== */
@@ -82,13 +83,19 @@ body {
     background: #F3F6FB;
 }
 
-.cabecalho h1 { margin: 0 0 8px; }
-.cabecalho p { margin: 4px 0; color: #000000; }
+.cabecalho h1 {
+    margin: 0 0 8px;
+}
+
+.cabecalho p {
+    margin: 4px 0;
+    color: #000000;
+}
 
 .btn-cta {
     display: inline-block;
     margin-top: 16px;
-    background: #3b7de0;
+    background: var(--azul);
     color: white;
     text-decoration: none;
     padding: 12px 28px;
@@ -138,66 +145,136 @@ body {
 }
 
 /* ==========================================================================
-   Login e Cadastro (estrutura compartilhada)
+   Login e Cadastro
    ========================================================================== */
-.pagina-login, .cad {
+.pagina-login,
+.cad {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     min-height: 80vh;
+    padding: 30px 16px;
+    box-sizing: border-box;
     background: #F3F6FB;
 }
 
-.card-login, .formCad {
+.card-login,
+.formCad {
+    box-sizing: border-box;
+    width: 100%;
     background: var(--branco);
     border-radius: 16px;
     padding: 40px 32px;
-    width: 100%;
     text-align: center;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
 }
 
-.card-login { max-width: 320px; }
-.formCad { max-width: 400px; }
+.card-login {
+    max-width: 384px;
+}
+
+.formCad {
+    max-width: 432px;
+}
 
 .logo-login {
     font-size: 32px;
     margin-bottom: 12px;
 }
 
-.card-login h1 {
+.card-login h1,
+.formCad h1 {
     font-size: 22px;
-    margin: 0 0 28px;
+    margin: 0 0 12px;
 }
 
-.formulario, .formCad {
+.subtitulo-cad {
+    color: #666;
+    font-size: 14px;
+    margin: 0 0 24px;
+}
+
+/* Formulário de login */
+.formulario {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    text-align:left
+    text-align: left;
 }
 
-.formulario label, .formCad label {
+/* Formulário de cadastro */
+.formCad form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: left;
+}
+
+/* Os campos do form.as_p ficam dentro de parágrafos */
+.formCad form p {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin: 0;
+}
+
+.formulario label,
+.formCad form label {
+    display: block;
     font-size: 13px;
     font-weight: 600;
     color: var(--azul);
-    margin-bottom: -10px;
 }
 
-.formulario input, .formCad input {
+/* Campos de entrada */
+.formulario input,
+.formCad form input {
+    box-sizing: border-box;
+    width: 100%;
     padding: 12px 14px;
     border: 1px solid #D5DCEB;
     border-radius: 10px;
     font-size: 14px;
     outline: none;
+    background: #FFFFFF;
 }
 
-.formulario input:focus, .formCad input:focus {
+.formulario input:focus,
+.formCad form input:focus {
     border-color: var(--azul);
+    box-shadow: 0 0 0 3px rgba(59, 125, 224, 0.12);
 }
 
-.btn-login, .cadEviar {
+/* Instruções e erros do Django */
+.formCad form .helptext {
+    display: block;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #666;
+}
+
+.formCad form ul {
+    margin: 5px 0 0;
+    padding-left: 20px;
+    font-size: 12px;
+    line-height: 1.6;
+    color: #666;
+}
+
+.formCad form .errorlist {
+    color: #C62828;
+    font-size: 12px;
+    margin: 0;
+    padding-left: 18px;
+}
+
+/* Botões de login e cadastro */
+.btn-login,
+.cadEnviar {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
     margin-top: 8px;
     background: var(--azul);
     color: var(--branco);
@@ -207,18 +284,21 @@ body {
     font-size: 15px;
     font-weight: 700;
     cursor: pointer;
-    transition: 500ms ease-out;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 
-.btn-login:hover, #cadEviar:hover {
-    box-shadow: 0 0 2px#1b4686;
- 
+.btn-login:hover,
+.cadEnviar:hover {
+    background: #2D68C3;
+    box-shadow: 0 0 4px rgba(27, 70, 134, 0.4);
 }
 
+/* Mensagens e links secundários */
 .link-secundario {
     margin-top: 20px;
     font-size: 13px;
     color: #666;
+    text-align: center;
 }
 
 .link-secundario a {
@@ -227,35 +307,50 @@ body {
     text-decoration: none;
 }
 
+.link-secundario a:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   Página de pedidos
+   ========================================================================== */
 .pedido {
-    --azul: #142a52;
-    --vermelho: #a51c30;
-    --vermelho-escuro: #7e1524;
-    --cinza-bg: #eef1f6;
-    --cinza-borda: #d7dce6;
-    --cinza-texto: #5b6472;
-    --branco: #ffffff;
+    --azul: #142A52;
+    --vermelho: #A51C30;
+    --vermelho-escuro: #7E1524;
+    --cinza-bg: #EEF1F6;
+    --cinza-borda: #D7DCE6;
+    --cinza-texto: #5B6472;
+    --branco: #FFFFFF;
     --radius: 12px;
+
     font-family: "Segoe UI", Roboto, Arial, sans-serif;
-    color: #1c2333;
+    color: #1C2333;
     max-width: 480px;
     margin: 0 auto;
     padding: 16px 16px 32px;
     background: var(--branco);
-  }
-  
-  .sr-only {
-    position: absolute; width: 1px; height: 1px;
-    padding: 0; margin: -1px; overflow: hidden;
-    clip: rect(0,0,0,0); white-space: nowrap; border: 0;
-  }
+}
 
-  .pedido .tabs {
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.pedido .tabs {
     display: flex;
     gap: 10px;
     margin-bottom: 18px;
-  }
-  .pedido .tab {
+}
+
+.pedido .tab {
     flex: 1;
     border: none;
     border-radius: 20px;
@@ -265,33 +360,33 @@ body {
     background: var(--cinza-bg);
     color: var(--azul);
     cursor: pointer;
-    transition: background .15s ease, color .15s ease;
-  }
-  .pedido .tab[aria-pressed="true"] {
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.pedido .tab[aria-pressed="true"] {
     background: var(--vermelho);
     color: var(--branco);
-  }
-  
-  .pedido .titulo {
+}
+
+.pedido .titulo {
     color: var(--vermelho);
     font-size: 20px;
-    letter-spacing: .3px;
+    letter-spacing: 0.3px;
     margin: 4px 0 16px;
-  }
-  
-  .pedido .subtitulo {
+}
+
+.pedido .subtitulo {
     font-size: 15px;
     font-weight: 700;
     margin: 0 0 12px;
-    color: #1c2333;
-  }
-  
-  .pedido .cartao {
+    color: #1C2333;
+}
+
+.pedido .cartao {
     margin-bottom: 20px;
-  }
-  
-  
-  .pedido .campo {
+}
+
+.pedido .campo {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -300,58 +395,68 @@ body {
     padding: 12px 14px;
     margin-bottom: 12px;
     background: var(--branco);
-  }
-  .pedido .campo:focus-within {
+}
+
+.pedido .campo:focus-within {
     border-color: var(--vermelho);
-    box-shadow: 0 0 0 3px rgba(165,28,48,.12);
-  }
-  .pedido .campo-icone {
+    box-shadow: 0 0 0 3px rgba(165, 28, 48, 0.12);
+}
+
+.pedido .campo-icone {
     font-size: 14px;
-    opacity: .65;
-  }
-  .pedido .campo input {
+    opacity: 0.65;
+}
+
+.pedido .campo input {
     flex: 1;
+    min-width: 0;
     border: none;
     outline: none;
     font-size: 14px;
     background: transparent;
-    color: #1c2333;
-  }
-  .pedido .campo input::placeholder {
-    color: #97a0af;
-  }
-  
-  
-  .pedido .tabela-wrap {
+    color: #1C2333;
+}
+
+.pedido .campo input::placeholder {
+    color: #97A0AF;
+}
+
+.pedido .tabela-wrap {
     overflow-x: auto;
-  }
-  .pedido .tabela-itens {
+}
+
+.pedido .tabela-itens {
     width: 100%;
     border-collapse: collapse;
     font-size: 13px;
-  }
-  .pedido .tabela-itens th {
+}
+
+.pedido .tabela-itens th {
     text-align: left;
     color: var(--vermelho);
     font-weight: 700;
     padding: 6px 8px;
     border-bottom: 2px solid var(--cinza-borda);
     white-space: nowrap;
-  }
-  .pedido .tabela-itens td {
+}
+
+.pedido .tabela-itens td {
     padding: 8px;
     border-bottom: 1px solid var(--cinza-borda);
     vertical-align: middle;
-  }
-  .pedido .tabela-itens .col-acao {
+}
+
+.pedido .tabela-itens .col-acao {
     width: 28px;
-  }
-  .pedido .qtd-controle {
+}
+
+.pedido .qtd-controle {
     display: flex;
     align-items: center;
     gap: 6px;
-  }
-  .pedido .qtd-btn {
+}
+
+.pedido .qtd-btn {
     width: 22px;
     height: 22px;
     border-radius: 6px;
@@ -361,22 +466,25 @@ body {
     font-weight: 700;
     cursor: pointer;
     line-height: 1;
-  }
-  .pedido .qtd-btn:hover {
+}
+
+.pedido .qtd-btn:hover {
     background: var(--cinza-borda);
-  }
-  .pedido .remover-btn {
+}
+
+.pedido .remover-btn {
     border: none;
     background: transparent;
     color: var(--cinza-texto);
     cursor: pointer;
     font-size: 15px;
-  }
-  .pedido .remover-btn:hover {
+}
+
+.pedido .remover-btn:hover {
     color: var(--vermelho);
-  }
-  
-  .pedido .estado-vazio {
+}
+
+.pedido .estado-vazio {
     background: var(--cinza-bg);
     border-radius: var(--radius);
     text-align: center;
@@ -384,9 +492,9 @@ body {
     font-size: 13px;
     padding: 24px 16px;
     line-height: 1.6;
-  }
-  
-  .pedido .total-pedido {
+}
+
+.pedido .total-pedido {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -395,19 +503,20 @@ body {
     border-top: 2px solid var(--cinza-borda);
     font-size: 14px;
     color: var(--azul);
-  }
-  .pedido .total-pedido strong {
+}
+
+.pedido .total-pedido strong {
     font-size: 18px;
     color: var(--vermelho);
-  }
-  
-  
-  .pedido .categorias {
+}
+
+.pedido .categorias {
     display: flex;
     gap: 10px;
     margin-bottom: 16px;
-  }
-  .pedido .categoria-btn {
+}
+
+.pedido .categoria-btn {
     flex: 1;
     border: none;
     border-radius: 20px;
@@ -417,36 +526,41 @@ body {
     background: var(--cinza-bg);
     color: var(--azul);
     cursor: pointer;
-    transition: .15s ease, color .15s ease;
-  }
-  .pedido .categoria-btn[aria-pressed="true"] {
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.pedido .categoria-btn[aria-pressed="true"] {
     background: var(--azul);
     color: var(--branco);
-  }
-  
-  .pedido .lista-produtos {
+}
+
+.pedido .lista-produtos {
     display: flex;
     flex-direction: column;
     gap: 10px;
-  }
-  .pedido .produto-card {
+}
+
+.pedido .produto-card {
     display: flex;
     justify-content: space-between;
     align-items: center;
     border: 1px solid var(--cinza-borda);
     border-radius: var(--radius);
     padding: 12px 14px;
-  }
-  .pedido .produto-info strong {
+}
+
+.pedido .produto-info strong {
     display: block;
     font-size: 14px;
-    color: #1c2333;
-  }
-  .pedido .produto-info span {
+    color: #1C2333;
+}
+
+.pedido .produto-info span {
     font-size: 12px;
     color: var(--cinza-texto);
-  }
-  .pedido .produto-add {
+}
+
+.pedido .produto-add {
     border: none;
     background: var(--vermelho);
     color: var(--branco);
@@ -455,11 +569,413 @@ body {
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
-  }
-  .pedido .produto-add:hover {
+}
+
+.pedido .produto-add:hover {
     background: var(--vermelho-escuro);
+}
+
+/* ==========================================================================
+   Página de produtos
+   ========================================================================== */
+.produtos-header {
+    text-align: center;
+    padding: 32px 20px 8px;
+}
+
+.produtos-header p {
+    color: #555;
+}
+
+.produtos-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 16px 24px 60px;
+}
+
+.produtos-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.produto-card {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 14px;
+    padding: 18px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.produto-imagem {
+    font-size: 40px;
+    margin-bottom: 8px;
+}
+
+.produto-card h3 {
+    margin: 4px 0;
+    font-size: 16px;
+}
+
+.produto-descricao {
+    font-size: 13px;
+    color: #666;
+    margin: 0 0 8px;
+}
+
+.produto-preco {
+    font-weight: 700;
+    color: var(--azul);
+    margin: 0 0 12px;
+}
+
+.produto-quantidade {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+}
+
+.btn-qtd {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid var(--azul);
+    background: #FFFFFF;
+    color: var(--azul);
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.btn-qtd:hover {
+    background: var(--azul);
+    color: #FFFFFF;
+}
+
+.qtd-valor {
+    min-width: 18px;
+    font-weight: 600;
+}
+
+.btn-adicionar {
+    width: 100%;
+    background: var(--azul);
+    color: #FFFFFF;
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.btn-adicionar:hover {
+    opacity: 0.9;
+}
+
+/* Resumo do pedido (carrinho) */
+.resumo-pedido {
+    box-sizing: border-box;
+    width: 280px;
+    flex-shrink: 0;
+    background: #F3F6FB;
+    border-radius: 14px;
+    padding: 20px;
+    position: sticky;
+    top: 20px;
+}
+
+.resumo-pedido h2 {
+    margin-top: 0;
+    font-size: 17px;
+}
+
+.resumo-itens {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.resumo-itens li {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #333;
+}
+
+.resumo-vazio {
+    color: #888 !important;
+    font-style: italic;
+}
+
+.resumo-total {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    padding-top: 12px;
+    border-top: 1px solid #D6E0F0;
+    margin-bottom: 16px;
+}
+
+.btn-finalizar {
+    width: 100%;
+    background: var(--azul);
+    color: #FFFFFF;
+    border: none;
+    padding: 12px;
+    border-radius: 22px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-finalizar:disabled {
+    background: #A9BEDD;
+    cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Responsividade
+   ========================================================================== */
+@media (max-width: 720px) {
+    .navbar {
+        padding: 16px 20px;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .navbar-links {
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    .produtos-container {
+        flex-direction: column;
+    }
+
+    .resumo-pedido {
+        width: 100%;
+        position: static;
+    }
+}
+
+@media (max-width: 500px) {
+    .card-login,
+    .formCad {
+        padding: 28px 20px;
+    }
+
+    .formCad h1,
+    .card-login h1 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 360px) {
+    .pedido .tab,
+    .pedido .categoria-btn {
+        font-size: 12.5px;
+        padding: 9px 4px;
+    }
+}
+
+
+/* Cadastro */
+.cad {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 15px;
+}
+
+.formCad {
+    width: 100%;
+    max-width: 420px;
+    box-sizing: border-box;
+    background: var(--branco);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.formCad h1 {
+    margin-bottom: 10px;
+}
+
+.formCad .subtitulo-cad {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.formCad form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+}
+
+.formCad form p {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 0;
+    width: 100%;
+}
+
+.formCad label {
+    font-weight: 600;
+}
+
+.formCad input:not([type="submit"]) {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.formCad .cadEnviar {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 6px;
+    background: var(--azul);
+    color: var(--branco);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.formCad .cadEnviar:hover {
+    opacity: 0.9;
+}
+
+.formCad .helptext {
+    font-size: 12px;
+    color: #666;
+}
+
+.formCad ul.errorlist {
+    color: var(--vermelho);
+    font-size: 13px;
+    padding-left: 20px;
+}
+
+@media (max-width: 480px) {
+    .formCad {
+        padding: 22px;
+    }
+}
+
+
+
+
+
+/* Cadastro */
+.cad {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 15px;
+}
+
+.formCad {
+  width: 100%;
+  max-width: 420px;
+  box-sizing: border-box;
+  background: var(--branco);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.formCad h1 {
+  margin-bottom: 10px;
+}
+
+.formCad .subtitulo-cad {
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.formCad form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+.formCad form p {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  width: 100%;
+}
+
+.formCad label {
+  font-weight: 600;
+}
+
+.formCad input:not([type="submit"]) {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.formCad .cadEnviar {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 6px;
+  background: var(--azul);
+  color: var(--branco);
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.formCad .cadEnviar:hover {
+  opacity: 0.9;
+}
+
+.formCad .helptext {
+  font-size: 12px;
+  color: #666;
+}
+
+.formCad ul.errorlist {
+  color: var(--vermelho);
+  font-size: 13px;
+  padding-left: 20px;
+}
+
+@media (max-width: 480px) {
+  .formCad {
+      padding: 22px;
   }
-  
-  @media (max-width: 360px) {
-    .pedido .tab, .pedido .categoria-btn { font-size: 12.5px; padding: 9px 4px; }
-  }
+}

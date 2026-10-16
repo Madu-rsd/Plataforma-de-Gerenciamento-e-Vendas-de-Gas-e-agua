@@ -5,11 +5,11 @@
 {% block content %}
 <main class="pedido">
 
-    <!-- Abas superiores (Gás / Água / Promoções) -->
+    <!-- Abas superiores (Gás / Água / Gás do Povo) -->
     <nav class="tabs" aria-label="Categorias do pedido">
       <button type="button" class="tab" data-categoria="gas">Gás</button>
       <button type="button" class="tab" data-categoria="agua">Água</button>
-      <button type="button" class="tab" data-categoria="promocoes">Promoções</button>
+      <button type="button" class="tab" data-categoria="gpovo">Gás do Povo</button>
     </nav>
   
     <h1 class="titulo">Realizar Pedido</h1>
@@ -67,15 +67,7 @@
     </section>
   
     <!-- 3. CATEGORIAS (filtro de produtos) -->
-    <section class="cartao">
-      <h2 class="subtitulo">Categorias</h2>
-  
-      <div class="categorias" role="tablist" aria-label="Filtrar produtos por categoria">
-        <button type="button" class="categoria-btn" data-categoria="gas">Gás</button>
-        <button type="button" class="categoria-btn" data-categoria="agua">Água</button>
-        <button type="button" class="categoria-btn" data-categoria="promocoes">Promoções</button>
-      </div>
-  
+    <section class="cartao"> 
       <div id="lista-produtos" class="lista-produtos">
         <!-- produtos inseridos via JS, filtrados pela categoria ativa -->
       </div>

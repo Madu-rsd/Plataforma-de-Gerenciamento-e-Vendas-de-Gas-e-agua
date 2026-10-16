@@ -12,7 +12,7 @@
         { id: 'a10', nome: 'Galão 10L', preco: 10.00 },
         { id: 'am1', nome: 'Água mineral 1,5L', preco: 4.50 },
       ],
-      promocoes: [
+      gpovo: [
         { id: 'pk1', nome: 'Kit 1 botijão P13 + 1 galão 20L', preco: 130.00 },
         { id: 'pk2', nome: 'Kit 2 galões 20L', preco: 27.00 },
       ],

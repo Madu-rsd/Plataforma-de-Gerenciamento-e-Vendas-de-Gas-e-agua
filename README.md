@@ -100,85 +100,114 @@ No Windows, caso o comando `python` não funcione, tente:
 py --version
 ```
 
-## Instalação e execução
+## Como configurar o projeto na sua máquina
 
-Siga os passos abaixo para configurar e executar o projeto em seu computador.
-
-### 1. Clonar o repositório
-
-Abra o terminal ou o Git Bash e execute:
+### 1. Clone o repositório
 
 ```bash
-git clone 
+git clone https://github.com/Madu-rsd/Plataforma-de-Gerenciamento-e-Vendas-de-Gas-e-agua.git
+cd Plataforma-de-Gerenciamento-e-Vendas-de-Gas-e-agua
 ```
 
-Substitua `URL_DO_REPOSITORIO` pelo endereço HTTPS do repositório no GitHub.
+O comando `git clone` baixa uma cópia completa do projeto para a sua máquina.
 
-### 2. Acessar a pasta do projeto
+### 2. Crie o ambiente virtual
 
-Entre no diretório criado após a clonagem:
+O ambiente virtual isola as dependências do projeto do resto do sistema:
 
 ```bash
-cd nome-da-pasta
+python -m venv ./venv
 ```
 
-### 3. Criar um ambiente virtual
+Ative o ambiente.
 
-O ambiente virtual permite instalar as dependências do projeto de maneira isolada, evitando conflitos com outros projetos Python.
-
-Execute:
-
-```bash
-python -m venv venv
-```
-
-### 4. Ativar o ambiente virtual
-
-**No Windows (PowerShell):**
-
-```powershell
-.\venv\Scripts\Activate.ps1
-```
-
-**No Windows (Prompt de Comando):**
+No Windows (Prompt de Comando):
 
 ```cmd
 venv\Scripts\activate
 ```
 
-**No Linux ou macOS:**
+No Windows (PowerShell):
+
+```powershell
+.\venv\Scripts\Activate.ps1
+```
+
+No Linux ou Mac:
 
 ```bash
 source venv/bin/activate
 ```
 
-Após a ativação, o nome do ambiente virtual geralmente aparecerá no início da linha do terminal.
+Quando ativar, o terminal passa a mostrar `(venv)` no início da linha.
 
-### 5. Instalar as dependências
+### 3. Instale as dependências
 
-Com o ambiente virtual ativado, instale as dependências do projeto:
+O arquivo `requirements.txt` lista tudo o que o projeto precisa. Com a venv ativada, execute:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-O arquivo `requirements.txt` deve estar disponível na pasta principal do repositório e conter as bibliotecas necessárias para executar a aplicação.
+Isso instala o Django e o python-dotenv de uma só vez.
 
-**Caso o arquivo ainda não exista**, ele deverá ser criado no ambiente de desenvolvimento e enviado ao GitHub. Para isso, com as dependências instaladas, execute:
+### 4. Crie o arquivo `.env`
+
+Copie o arquivo modelo e renomeie para `.env`:
 
 ```bash
-pip freeze > requirements.txt
+cp .env.example .env
 ```
 
-### 6. Aplicar as migrações do banco de dados
+No Windows, se o comando `cp` não funcionar:
 
-Execute o comando abaixo para preparar o banco de dados conforme as configurações e os modelos definidos no projeto:
+```cmd
+copy .env.example .env
+```
+
+Abra o `.env`. Ele contém:
+
+```
+SECRET_KEY=
+DEBUG=True
+```
+
+A `SECRET_KEY` está vazia de propósito. Ela precisa ser gerada por cada pessoa, porque nunca é enviada para o GitHub.
+
+### 5. Gere a sua `SECRET_KEY`
+
+Com o ambiente ativado, execute:
+
+```bash
+python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+```
+
+O terminal imprime uma chave aleatória, parecida com esta:
+
+```
+django-insecure-9x#k2$m4v@q7w8e9r1t2y3u4i5o6p7a8s9d0f1g2h3j4k5l6
+```
+
+### 6. Cole a chave no `.env`
+
+Copie a chave impressa e cole no arquivo, sem aspas e sem espaços:
+
+```
+SECRET_KEY=django-insecure-9x#k2$m4v@q7w8e9r1t2y3u4i5o6p7a8s9d0f1g2h3j4k5l6
+DEBUG=True
+```
+
+Cada pessoa pode usar a sua própria chave. O projeto funciona normalmente com chaves diferentes, pois ela serve apenas para assinar sessões e cookies.
+
+### 7. Crie o banco de dados
+
+O arquivo `db.sqlite3` também não vai para o GitHub. Cada máquina precisa criar o seu banco local:
 
 ```bash
 python manage.py migrate
 ```
 
-### 7. Criar um usuário administrador (opcional)
+### 8. Crie um usuário administrador (opcional)
 
 Caso seja necessário acessar a área administrativa do Django, crie um superusuário:
 
@@ -186,27 +215,19 @@ Caso seja necessário acessar a área administrativa do Django, crie um superusu
 python manage.py createsuperuser
 ```
 
-Em seguida, informe os dados solicitados pelo terminal, como nome de usuário, e-mail e senha.
+Informe nome de usuário, e-mail e senha quando o terminal solicitar.
 
-### 8. Iniciar o servidor
-
-Para executar a aplicação localmente, utilize:
+### 9. Rode o projeto
 
 ```bash
 python manage.py runserver
 ```
 
-### 9. Acessar o sistema
+Acesse http://localhost:8000/ no navegador.
 
-Após iniciar o servidor, abra o navegador e acesse:
+A área administrativa fica em http://localhost:8000/admin/ (quando configurada).
 
-**Aplicação:**
-http://127.0.0.1:8000/
-
-**Área administrativa do Django (quando configurada):**
-http://127.0.0.1:8000/admin/
-
-Para encerrar a execução do servidor, pressione `CTRL + C` no terminal.
+Para encerrar o servidor, pressione `CTRL + C` no terminal.
 
 ## Estrutura do projeto
 
@@ -215,33 +236,32 @@ O projeto utiliza a organização de arquivos do Django, com templates para as p
 A estrutura geral inclui:
 
 ```text
-Fernando-Agua-e-Gas/
+Plataforma-de-Gerenciamento-e-Vendas-de-Gas-e-agua/
 │
-├── manage.py
+├── pedidos/
+├── produtos/
+├── usuarios/
 │
-├── nome_do_projeto/
+├── setup/
 │   ├── settings.py
 │   ├── urls.py
 │   ├── asgi.py
 │   └── wsgi.py
 │
-├── nome_do_app/
-│   ├── migrations/
-│   ├── templates/
-│   ├── views.py
-│   ├── urls.py
-│   ├── models.py
-│   └── admin.py
-│
 ├── static/
 │   └── css/
 │       └── style.css
 │
-├── requirements.txt
-└── README.md
+├── Templates/
+│
+├── venv/
+│
+├── .gitignore
+├── db.sqlite3
+├── manage.py
+├── README.md
+└── requirements.txt
 ```
-
-*Observação: os nomes dos diretórios `nome_do_projeto` e `nome_do_app` são ilustrativos e devem corresponder aos nomes utilizados na estrutura real do repositório.*
 
 ## Integrantes
 
